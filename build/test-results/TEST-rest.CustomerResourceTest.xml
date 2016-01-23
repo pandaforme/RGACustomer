@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="rest.CustomerResourceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2016-01-23T16:36:11" hostname="ChienKuChen-MacBookPro.local" time="0.011">
+  <properties/>
+  <testcase name="testGetNoContent" classname="rest.CustomerResourceTest" time="0.001"/>
+  <testcase name="testGetAllNoContent" classname="rest.CustomerResourceTest" time="0.001"/>
+  <testcase name="testGetHasContent" classname="rest.CustomerResourceTest" time="0.001"/>
+  <testcase name="testGetAllHasContent" classname="rest.CustomerResourceTest" time="0.001"/>
+  <testcase name="testCreate" classname="rest.CustomerResourceTest" time="0.0"/>
+  <testcase name="testDelete" classname="rest.CustomerResourceTest" time="0.0"/>
+  <testcase name="testUpdate" classname="rest.CustomerResourceTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

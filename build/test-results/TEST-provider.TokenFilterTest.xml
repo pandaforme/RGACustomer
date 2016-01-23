@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="provider.TokenFilterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2016-01-23T16:36:11" hostname="ChienKuChen-MacBookPro.local" time="0.021">
+  <properties/>
+  <testcase name="testNormalCase" classname="provider.TokenFilterTest" time="0.005"/>
+  <testcase name="testDecodeError" classname="provider.TokenFilterTest" time="0.003"/>
+  <testcase name="testUserIdError" classname="provider.TokenFilterTest" time="0.005"/>
+  <testcase name="testTokenNull" classname="provider.TokenFilterTest" time="0.0"/>
+  <testcase name="testTokenExpire" classname="provider.TokenFilterTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

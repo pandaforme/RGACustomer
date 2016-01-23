@@ -4,21 +4,18 @@ import db.CustomerRepo;
 import model.Customer;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class DummyCustomerRepo implements CustomerRepo {
   @Override
-  public Customer get(UUID uuid) {
-    return Customer.builder()
-                   .age(18)
-                   .email("default@email.com")
-                   .name("default " + uuid)
-                   .build();
+  public Optional<Customer> get(UUID uuid) {
+    return Optional.of(new Customer());
   }
 
   @Override
-  public List<Customer> getAll() {
-    return null;
+  public Optional<List<Customer>> getAll(UUID uuid) {
+    return Optional.empty();
   }
 
   @Override

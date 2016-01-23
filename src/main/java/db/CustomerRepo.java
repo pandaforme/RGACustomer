@@ -3,12 +3,13 @@ package db;
 import model.Customer;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface CustomerRepo {
-  Customer get(UUID uuid);
+  Optional<Customer> get(UUID uuid);
 
-  List<Customer> getAll();
+  Optional<List<Customer>> getAll(UUID uuid);
 
   void create(Customer customer);
 

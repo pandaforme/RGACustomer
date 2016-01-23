@@ -1,5 +1,6 @@
 package rest;
 
+import annotation.TokenFilter;
 import db.CustomerRepo;
 import model.Customer;
 
@@ -9,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -19,21 +22,34 @@ public class CustomerResource {
   private CustomerRepo customerRepo;
 
   @GET
-  @Path("/customers/{id}")
+  @Path("/customer/{id}")
+  @TokenFilter
   public Response get(@PathParam("id") @NotNull UUID id) {
-    return Response.ok(customerRepo.get(id), MediaType.APPLICATION_JSON)
+    final Optional<Customer> customer = customerRepo.get(id);
+    if (!customer.isPresent())
+      return Response.noContent()
+                     .build();
+
+    return Response.ok(customer.get(), MediaType.APPLICATION_JSON)
                    .build();
   }
 
   @GET
-  @Path("/customers/")
-  public Response getAll() {
-    return Response.ok(customerRepo.getAll(), MediaType.APPLICATION_JSON)
+  @Path("/customers/{id}")
+  @TokenFilter
+  public Response getAll(@PathParam("id") @NotNull UUID id) {
+    final Optional<List<Customer>> customers = customerRepo.getAll(id);
+    if (!customers.isPresent())
+      return Response.noContent()
+                     .build();
+
+    return Response.ok(customers.get(), MediaType.APPLICATION_JSON)
                    .build();
   }
 
   @POST
-  @Path("/customers/")
+  @Path("/customer/")
+  @TokenFilter
   public Response create(@NotNull @Valid Customer customer) {
     customerRepo.create(customer);
     return Response.ok(MediaType.APPLICATION_JSON)
@@ -41,7 +57,8 @@ public class CustomerResource {
   }
 
   @PUT
-  @Path("/customers/")
+  @Path("/customer/")
+  @TokenFilter
   public Response update(@NotNull @Valid Customer customer) {
     customerRepo.update(customer);
     return Response.ok(MediaType.APPLICATION_JSON)
@@ -49,7 +66,8 @@ public class CustomerResource {
   }
 
   @DELETE
-  @Path("/customers/{id}")
+  @Path("/customer/{id}")
+  @TokenFilter
   public Response delete(@PathParam("id") @NotNull UUID id) {
     customerRepo.delete(id);
     return Response.ok(MediaType.APPLICATION_JSON)

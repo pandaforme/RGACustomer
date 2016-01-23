@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="integration.TokenFilterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2016-01-23T16:36:09" hostname="ChienKuChen-MacBookPro.local" time="1.945">
+  <properties/>
+  <testcase name="testNormalCase" classname="integration.TokenFilterTest" time="1.358"/>
+  <testcase name="testDecodeError" classname="integration.TokenFilterTest" time="0.181"/>
+  <testcase name="testUserIdError" classname="integration.TokenFilterTest" time="0.155"/>
+  <testcase name="testTokenNull" classname="integration.TokenFilterTest" time="0.136"/>
+  <testcase name="testTokenExpire" classname="integration.TokenFilterTest" time="0.11"/>
+  <system-out><![CDATA[00:36:10.283 [Test worker] DEBUG org.eclipse.jetty.util.log - Logging to Logger[org.eclipse.jetty.util.log] via org.eclipse.jetty.util.log.Slf4jLog
+00:36:10.649 [Test worker] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+00:36:10.649 [Test worker] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.1.3.Final
+00:36:10.655 [Test worker] DEBUG o.h.v.i.e.r.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+00:36:10.663 [Test worker] DEBUG o.h.v.i.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+00:36:10.668 [Test worker] DEBUG o.h.v.i.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+00:36:10.750 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@3c2222a1 added {qtp1409695905{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+00:36:10.761 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - HttpConnectionFactory@42af3966{HTTP/1.1} added {HttpConfiguration@843ecd4{32768,8192/8192,https://:0,[]},POJO}
+00:36:10.762 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@3007281c{null}{0.0.0.0:0} added {org.eclipse.jetty.server.Server@3c2222a1,UNMANAGED}
+00:36:10.763 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@3007281c{null}{0.0.0.0:0} added {qtp1409695905{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+00:36:10.763 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@3007281c{null}{0.0.0.0:0} added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@4dfcd252,AUTO}
+00:36:10.763 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@3007281c{null}{0.0.0.0:0} added {org.eclipse.jetty.io.ArrayByteBufferPool@20a633e2,POJO}
+00:36:10.764 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@3007281c{null}{0.0.0.0:0} added {HttpConnectionFactory@42af3966{HTTP/1.1},AUTO}
+00:36:10.765 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@3007281c{HTTP/1.1}{0.0.0.0:0} added {org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@5e5ef4c8,MANAGED}
+00:36:10.766 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@3c2222a1 added {ServerConnector@3007281c{HTTP/1.1}{0.0.0.0:9998},AUTO}
+00:36:10.766 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@3c2222a1 added {org.glassfish.jersey.jetty.JettyHttpContainer@5b1a68f0,AUTO}
+00:36:10.766 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.server.Server@3c2222a1
+00:36:10.768 [Test worker] INFO  org.eclipse.jetty.server.Server - jetty-9.1.1.v20140108
+00:36:10.779 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - starting org.eclipse.jetty.server.Server@3c2222a1
+00:36:10.780 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting qtp1409695905{STOPPED,8<=0<=200,i=0,q=0}
+00:36:10.781 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED qtp1409695905{STARTED,8<=8<=200,i=7,q=0}
+00:36:10.781 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.glassfish.jersey.jetty.JettyHttpContainer@5b1a68f0
+00:36:10.781 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - starting org.glassfish.jersey.jetty.JettyHttpContainer@5b1a68f0
+00:36:10.782 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.glassfish.jersey.jetty.JettyHttpContainer@5b1a68f0
+00:36:10.782 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting ServerConnector@3007281c{HTTP/1.1}{0.0.0.0:9998}
+00:36:10.786 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@3007281c{HTTP/1.1}{0.0.0.0:9998} added {sun.nio.ch.ServerSocketChannelImpl[/0:0:0:0:0:0:0:0:9998],POJO}
+00:36:10.786 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@4dfcd252
+00:36:10.787 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@4dfcd252
+00:36:10.787 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting HttpConnectionFactory@42af3966{HTTP/1.1}
+00:36:10.787 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED HttpConnectionFactory@42af3966{HTTP/1.1}
+00:36:10.787 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@5e5ef4c8
+00:36:10.789 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@e749202 keys=-1 selected=-1
+00:36:10.790 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@e749202 keys=0 selected=0
+00:36:10.790 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@696696a7 keys=-1 selected=-1
+00:36:10.791 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@e749202 keys=0 selected=0
+00:36:10.791 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@696696a7 keys=0 selected=0
+00:36:10.791 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:10.793 [qtp1409695905-15-selector-ServerConnectorManager@5e5ef4c8/1] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1409695905-15-selector-ServerConnectorManager@5e5ef4c8/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@696696a7 keys=0 selected=0
+00:36:10.793 [qtp1409695905-15-selector-ServerConnectorManager@5e5ef4c8/1] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:10.794 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@63f68b91 keys=-1 selected=-1
+00:36:10.794 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@63f68b91 keys=0 selected=0
+00:36:10.795 [qtp1409695905-16-selector-ServerConnectorManager@5e5ef4c8/2] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1409695905-16-selector-ServerConnectorManager@5e5ef4c8/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@63f68b91 keys=0 selected=0
+00:36:10.795 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@11a32216 keys=-1 selected=-1
+00:36:10.796 [qtp1409695905-16-selector-ServerConnectorManager@5e5ef4c8/2] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:10.796 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@11a32216 keys=0 selected=0
+00:36:10.797 [qtp1409695905-17-selector-ServerConnectorManager@5e5ef4c8/3] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1409695905-17-selector-ServerConnectorManager@5e5ef4c8/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@11a32216 keys=0 selected=0
+00:36:10.797 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@5e5ef4c8
+00:36:10.797 [qtp1409695905-17-selector-ServerConnectorManager@5e5ef4c8/3] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:10.800 [Test worker] INFO  o.e.jetty.server.ServerConnector - Started ServerConnector@3007281c{HTTP/1.1}{0.0.0.0:9998}
+00:36:10.801 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED ServerConnector@3007281c{HTTP/1.1}{0.0.0.0:9998}
+00:36:10.801 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.server.Server@3c2222a1
+00:36:10.971 [qtp1409695905-18-acceptor-0-ServerConnector@3007281c{HTTP/1.1}{0.0.0.0:9998}] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@3a21de6d
+00:36:10.972 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:10.972 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@3a21de6d
+00:36:10.981 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onOpen SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,Open,in,out,-,-,30000,null}{io=0,kio=0,kro=0}
+00:36:10.981 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,Open,in,out,-,-,30000,null}{io=0,kio=0,kro=0} idle timeout check, elapsed: 5 ms, remaining: 29995 ms
+00:36:11.009 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG o.e.jetty.server.HttpConnection - New HTTP Connection HttpConnection@18a4765f{IDLE}
+00:36:11.010 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG o.e.jetty.io.AbstractConnection - onOpen HttpConnection@18a4765f{IDLE}
+00:36:11.010 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG o.e.jetty.io.AbstractConnection - fillInterested HttpConnection@18a4765f{IDLE}
+00:36:11.010 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG o.e.jetty.io.AbstractConnection - IDLE-->FILL_INTERESTED HttpConnection@18a4765f{FILL_INTERESTED}
+00:36:11.010 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 0 -> 1 for SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=0,kro=0}
+00:36:11.010 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@4373aae
+00:36:11.011 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 0 -> 1
+00:36:11.011 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Created SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=1,kro=0}
+00:36:11.011 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.011 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 1/1 selected
+00:36:11.011 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 1 -> 0
+00:36:11.011 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 1 -> 0 for SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,Open,in,out,R,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.012 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@4373aae
+00:36:11.012 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG o.e.jetty.io.AbstractConnection - FILL_INTERESTED-->FILLING HttpConnection@18a4765f{FILLING}
+00:36:11.012 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.012 [qtp1409695905-20] DEBUG o.e.jetty.server.HttpConnection - HttpConnection@18a4765f{FILLING} onFillable HttpChannelState@326052ba{s=IDLE i=true a=null}
+00:36:11.013 [qtp1409695905-20] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 195 SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.013 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - parseNext s=START HeapByteBuffer@3ca7aa86[p=0,l=195,c=8192,r=195]={<<<GET /Test HTTP/1.... keep-alive||||>>>�����������������...���������������}
+00:36:11.014 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - START --> SPACE1
+00:36:11.015 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - SPACE1 --> URI
+00:36:11.015 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - URI --> SPACE2
+00:36:11.015 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - SPACE2 --> REQUEST_VERSION
+00:36:11.015 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - REQUEST_VERSION --> HEADER
+00:36:11.016 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.016 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.016 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.017 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_NAME
+00:36:11.017 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_NAME --> HEADER_VALUE
+00:36:11.017 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.017 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.017 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.018 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.018 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.018 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.018 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.018 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.018 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_VALUE
+00:36:11.018 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.019 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> END
+00:36:11.021 [qtp1409695905-20] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@698edd15{r=1,a=IDLE,uri=-} messageComplete
+00:36:11.021 [qtp1409695905-20] DEBUG org.eclipse.jetty.server.HttpInput - HttpInputOverHTTP@74c93a3 EOF
+00:36:11.021 [qtp1409695905-20] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@698edd15{r=1,a=IDLE,uri=-} handle enter
+00:36:11.022 [qtp1409695905-20 - /Test] DEBUG o.e.jetty.server.HttpChannelState - HttpChannelState@326052ba{s=IDLE i=true a=null} handling IDLE
+00:36:11.023 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@698edd15{r=1,a=DISPATCHED,uri=/Test} action REQUEST_DISPATCH
+00:36:11.023 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.server.Server - REQUEST /Test on HttpChannelOverHttp@698edd15{r=1,a=DISPATCHED,uri=/Test}
+00:36:11.273 [qtp1409695905-20 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@7cd2c51c[ITERATING] generate: NEED_HEADER (null,[p=0,l=76,c=32768,r=76],false)@START
+00:36:11.274 [qtp1409695905-20 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@7cd2c51c[ITERATING] generate: FLUSH ([p=0,l=115,c=8192,r=115],[p=0,l=76,c=32768,r=76],false)@COMMITTED
+00:36:11.274 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - write: WriteFlusher@266fb042{IDLE} [HeapByteBuffer@75778c48[p=0,l=115,c=8192,r=115]={<<<HTTP/1.1 200 OK||...140108)||||4C||>>>�����������������...���������������},HeapByteBuffer@1fe74ddf[p=0,l=76,c=32768,r=76]={<<<org.glassfish.jer...uilder@7b7a820f>>>�����������������...���������������}]
+00:36:11.275 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@266fb042{WRITING}:IDLE-->WRITING
+00:36:11.277 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.io.ChannelEndPoint - flushed 191 SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,Open,in,out,-,W,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.277 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - flushed true
+00:36:11.277 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@266fb042{IDLE}:WRITING-->IDLE
+00:36:11.277 [qtp1409695905-20 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@7cd2c51c[ITERATING] generate: DONE ([p=115,l=115,c=8192,r=0],[p=76,l=76,c=32768,r=0],false)@COMMITTED
+00:36:11.278 [qtp1409695905-20 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$ContentCallback@4fd89a01[ITERATING] generate: DONE ([p=0,l=0,c=0,r=0],false)@COMMITTED
+00:36:11.278 [qtp1409695905-20 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$ContentCallback@6844a7e[ITERATING] generate: CONTINUE ([p=0,l=0,c=0,r=0],true)@COMPLETING
+00:36:11.278 [qtp1409695905-20 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$ContentCallback@6844a7e[ITERATING] generate: NEED_CHUNK ([p=0,l=0,c=0,r=0],true)@COMPLETING
+00:36:11.278 [qtp1409695905-20 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$ContentCallback@6844a7e[ITERATING] generate: FLUSH ([p=0,l=0,c=0,r=0],true)@COMPLETING
+00:36:11.278 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - write: WriteFlusher@266fb042{IDLE} [HeapByteBuffer@23a876c4[p=0,l=7,c=1024,r=7]={<<<||0||||>>>�����������������...���������������}]
+00:36:11.278 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@266fb042{WRITING}:IDLE-->WRITING
+00:36:11.278 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.io.ChannelEndPoint - flushed 7 SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,Open,in,out,-,W,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.279 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - flushed true
+00:36:11.279 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@266fb042{IDLE}:WRITING-->IDLE
+00:36:11.279 [qtp1409695905-20 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$ContentCallback@6844a7e[ITERATING] generate: DONE ([p=0,l=0,c=0,r=0],true)@END
+00:36:11.281 [qtp1409695905-20 - /Test] DEBUG org.eclipse.jetty.server.Server - RESPONSE /Test  200 handled=true
+00:36:11.281 [qtp1409695905-20 - /Test] DEBUG o.e.jetty.server.HttpChannelState - HttpChannelState@326052ba{s=DISPATCHED i=true a=null} unhandle DISPATCHED
+00:36:11.284 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - reset HttpParser{s=END,0 of 0}
+00:36:11.284 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - END --> START
+00:36:11.284 [qtp1409695905-20] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@698edd15{r=1,a=IDLE,uri=-} handle exit, result COMPLETE
+00:36:11.284 [qtp1409695905-20] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 0 SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.285 [qtp1409695905-20] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 0 SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.285 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - parseNext s=START HeapByteBuffer@75778c48[p=0,l=0,c=8192,r=0]={<<<>>>HTTP/1.1 200 OK||...���������������}
+00:36:11.285 [qtp1409695905-20] DEBUG o.e.jetty.io.AbstractConnection - fillInterested HttpConnection@18a4765f{FILLING}
+00:36:11.285 [qtp1409695905-20] DEBUG o.e.jetty.io.AbstractConnection - FILLING-->FILLING_FILL_INTERESTED HttpConnection@18a4765f{FILLING_FILL_INTERESTED}
+00:36:11.285 [qtp1409695905-20] DEBUG o.e.jetty.io.AbstractConnection - FILLING_FILL_INTERESTED-->FILL_INTERESTED HttpConnection@18a4765f{FILL_INTERESTED}
+00:36:11.285 [qtp1409695905-20] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 0 -> 1 for SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=0,kro=1}
+00:36:11.285 [qtp1409695905-20] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@4373aae
+00:36:11.285 [qtp1409695905-20] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 0 -> 1
+00:36:11.286 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/1 selected
+00:36:11.286 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.293 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.server.Server@3c2222a1
+00:36:11.296 [Test worker] DEBUG org.eclipse.jetty.server.Server - Graceful shutdown org.eclipse.jetty.server.Server@3c2222a1 by 
+00:36:11.297 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping ServerConnector@3007281c{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.297 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@5e5ef4c8
+00:36:11.297 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@e749202 keys=1 selected=0
+00:36:11.298 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@e749202 keys=1 selected=0
+00:36:11.299 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@14a637d
+00:36:11.300 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/1 selected
+00:36:11.300 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@14a637d
+00:36:11.301 [qtp1409695905-21] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onClose SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,CLOSED,in,out,R,-,30000,HttpConnection}{io=1,kio=1,kro=1}
+00:36:11.302 [qtp1409695905-21] DEBUG org.eclipse.jetty.io.ChannelEndPoint - close SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,CLOSED,in,out,-,-,30000,HttpConnection}{io=1,kio=1,kro=1}
+00:36:11.302 [qtp1409695905-20] DEBUG o.e.jetty.io.AbstractConnection - FILL_INTERESTED-->IDLE HttpConnection@18a4765f{IDLE}
+00:36:11.303 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - close HttpParser{s=START,0 of -1}
+00:36:11.303 [qtp1409695905-20] DEBUG org.eclipse.jetty.http.HttpParser - START --> CLOSED
+00:36:11.303 [qtp1409695905-21] DEBUG org.eclipse.jetty.io.SelectorManager - Destroyed SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,CLOSED,ISHUT,OSHUT,-,-,30000,HttpConnection}{io=1,kio=-1,kro=-1}
+00:36:11.303 [qtp1409695905-20] DEBUG o.e.jetty.io.AbstractConnection - HttpConnection@18a4765f{IDLE} onFillInterestedFailed java.nio.channels.ClosedChannelException
+00:36:11.303 [qtp1409695905-21] DEBUG o.e.jetty.io.AbstractConnection - onClose HttpConnection@18a4765f{IDLE}
+00:36:11.303 [qtp1409695905-21] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onClose SelectChannelEndPoint@519d679e{/127.0.0.1:61111<->9998,CLOSED,ISHUT,OSHUT,-,-,30000,HttpConnection}{io=1,kio=-1,kro=-1}
+00:36:11.304 [qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1409695905-14-selector-ServerConnectorManager@5e5ef4c8/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@e749202 keys=-1 selected=-1
+00:36:11.305 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@e749202 keys=-1 selected=-1
+00:36:11.306 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@e749202 keys=-1 selected=-1
+00:36:11.307 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@696696a7 keys=0 selected=0
+00:36:11.307 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@696696a7 keys=0 selected=0
+00:36:11.308 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@10cbbae9
+00:36:11.308 [qtp1409695905-15-selector-ServerConnectorManager@5e5ef4c8/1] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.309 [qtp1409695905-15-selector-ServerConnectorManager@5e5ef4c8/1] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@10cbbae9
+00:36:11.309 [qtp1409695905-15-selector-ServerConnectorManager@5e5ef4c8/1] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1409695905-15-selector-ServerConnectorManager@5e5ef4c8/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@696696a7 keys=-1 selected=-1
+00:36:11.309 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@696696a7 keys=-1 selected=-1
+00:36:11.310 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@696696a7 keys=-1 selected=-1
+00:36:11.310 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@63f68b91 keys=0 selected=0
+00:36:11.310 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@63f68b91 keys=0 selected=0
+00:36:11.310 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@1e039237
+00:36:11.310 [qtp1409695905-16-selector-ServerConnectorManager@5e5ef4c8/2] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.311 [qtp1409695905-16-selector-ServerConnectorManager@5e5ef4c8/2] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@1e039237
+00:36:11.311 [qtp1409695905-16-selector-ServerConnectorManager@5e5ef4c8/2] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1409695905-16-selector-ServerConnectorManager@5e5ef4c8/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@63f68b91 keys=-1 selected=-1
+00:36:11.311 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@63f68b91 keys=-1 selected=-1
+00:36:11.311 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@63f68b91 keys=-1 selected=-1
+00:36:11.311 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@11a32216 keys=0 selected=0
+00:36:11.312 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@11a32216 keys=0 selected=0
+00:36:11.312 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@21887d35
+00:36:11.313 [qtp1409695905-17-selector-ServerConnectorManager@5e5ef4c8/3] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.313 [qtp1409695905-17-selector-ServerConnectorManager@5e5ef4c8/3] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@21887d35
+00:36:11.313 [qtp1409695905-17-selector-ServerConnectorManager@5e5ef4c8/3] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1409695905-17-selector-ServerConnectorManager@5e5ef4c8/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@11a32216 keys=-1 selected=-1
+00:36:11.314 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@11a32216 keys=-1 selected=-1
+00:36:11.314 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@11a32216 keys=-1 selected=-1
+00:36:11.314 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@5e5ef4c8
+00:36:11.316 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping HttpConnectionFactory@42af3966{HTTP/1.1}
+00:36:11.316 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED HttpConnectionFactory@42af3966{HTTP/1.1}
+00:36:11.316 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@4dfcd252
+00:36:11.317 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@4dfcd252
+00:36:11.317 [Test worker] INFO  o.e.jetty.server.ServerConnector - Stopped ServerConnector@3007281c{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.318 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED ServerConnector@3007281c{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.318 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - stopping org.eclipse.jetty.server.Server@3c2222a1
+00:36:11.318 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.glassfish.jersey.jetty.JettyHttpContainer@5b1a68f0
+00:36:11.319 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - stopping org.glassfish.jersey.jetty.JettyHttpContainer@5b1a68f0
+00:36:11.325 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.glassfish.jersey.jetty.JettyHttpContainer@5b1a68f0
+00:36:11.325 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping qtp1409695905{STARTED,8<=8<=200,i=8,q=0}
+00:36:11.328 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED qtp1409695905{STOPPED,8<=0<=200,i=0,q=0}
+00:36:11.328 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.server.Server@3c2222a1
+00:36:11.414 [Test worker] DEBUG o.h.v.i.e.r.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+00:36:11.416 [Test worker] DEBUG o.h.v.i.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+00:36:11.417 [Test worker] DEBUG o.h.v.i.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+00:36:11.432 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@66fb1da0 added {qtp1975878926{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+00:36:11.432 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - HttpConnectionFactory@3c5b81d{HTTP/1.1} added {HttpConfiguration@736d3e95{32768,8192/8192,https://:0,[]},POJO}
+00:36:11.433 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@147126e5{null}{0.0.0.0:0} added {org.eclipse.jetty.server.Server@66fb1da0,UNMANAGED}
+00:36:11.433 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@147126e5{null}{0.0.0.0:0} added {qtp1975878926{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+00:36:11.434 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@147126e5{null}{0.0.0.0:0} added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@2ad92803,AUTO}
+00:36:11.434 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@147126e5{null}{0.0.0.0:0} added {org.eclipse.jetty.io.ArrayByteBufferPool@3a5a6126,POJO}
+00:36:11.434 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@147126e5{null}{0.0.0.0:0} added {HttpConnectionFactory@3c5b81d{HTTP/1.1},AUTO}
+00:36:11.434 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@147126e5{HTTP/1.1}{0.0.0.0:0} added {org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@20d9796e,MANAGED}
+00:36:11.434 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@66fb1da0 added {ServerConnector@147126e5{HTTP/1.1}{0.0.0.0:9998},AUTO}
+00:36:11.435 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@66fb1da0 added {org.glassfish.jersey.jetty.JettyHttpContainer@43a3c446,AUTO}
+00:36:11.435 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.server.Server@66fb1da0
+00:36:11.435 [Test worker] INFO  org.eclipse.jetty.server.Server - jetty-9.1.1.v20140108
+00:36:11.435 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - starting org.eclipse.jetty.server.Server@66fb1da0
+00:36:11.436 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting qtp1975878926{STOPPED,8<=0<=200,i=0,q=0}
+00:36:11.438 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED qtp1975878926{STARTED,8<=8<=200,i=8,q=0}
+00:36:11.439 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.glassfish.jersey.jetty.JettyHttpContainer@43a3c446
+00:36:11.439 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - starting org.glassfish.jersey.jetty.JettyHttpContainer@43a3c446
+00:36:11.439 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.glassfish.jersey.jetty.JettyHttpContainer@43a3c446
+00:36:11.439 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting ServerConnector@147126e5{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.440 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@147126e5{HTTP/1.1}{0.0.0.0:9998} added {sun.nio.ch.ServerSocketChannelImpl[/0:0:0:0:0:0:0:0:9998],POJO}
+00:36:11.441 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@2ad92803
+00:36:11.441 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@2ad92803
+00:36:11.441 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting HttpConnectionFactory@3c5b81d{HTTP/1.1}
+00:36:11.442 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED HttpConnectionFactory@3c5b81d{HTTP/1.1}
+00:36:11.442 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@20d9796e
+00:36:11.442 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@5ef884d9 keys=-1 selected=-1
+00:36:11.442 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@5ef884d9 keys=0 selected=0
+00:36:11.443 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@37c28d71 keys=-1 selected=-1
+00:36:11.443 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@5ef884d9 keys=0 selected=0
+00:36:11.444 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@37c28d71 keys=0 selected=0
+00:36:11.444 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.445 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@5cbb90ee keys=-1 selected=-1
+00:36:11.445 [qtp1975878926-26-selector-ServerConnectorManager@20d9796e/1] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1975878926-26-selector-ServerConnectorManager@20d9796e/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@37c28d71 keys=0 selected=0
+00:36:11.445 [qtp1975878926-26-selector-ServerConnectorManager@20d9796e/1] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.445 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@5cbb90ee keys=0 selected=0
+00:36:11.446 [qtp1975878926-27-selector-ServerConnectorManager@20d9796e/2] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1975878926-27-selector-ServerConnectorManager@20d9796e/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@5cbb90ee keys=0 selected=0
+00:36:11.446 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@167eecb keys=-1 selected=-1
+00:36:11.446 [qtp1975878926-27-selector-ServerConnectorManager@20d9796e/2] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.451 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@167eecb keys=0 selected=0
+00:36:11.451 [qtp1975878926-28-selector-ServerConnectorManager@20d9796e/3] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1975878926-28-selector-ServerConnectorManager@20d9796e/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@167eecb keys=0 selected=0
+00:36:11.451 [qtp1975878926-28-selector-ServerConnectorManager@20d9796e/3] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.452 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@20d9796e
+00:36:11.452 [Test worker] INFO  o.e.jetty.server.ServerConnector - Started ServerConnector@147126e5{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.452 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED ServerConnector@147126e5{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.452 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.server.Server@66fb1da0
+00:36:11.480 [qtp1975878926-29-acceptor-0-ServerConnector@147126e5{HTTP/1.1}{0.0.0.0:9998}] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@75cffe74
+00:36:11.481 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.481 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@75cffe74
+00:36:11.481 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onOpen SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,Open,in,out,-,-,30000,null}{io=0,kio=0,kro=0}
+00:36:11.481 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,Open,in,out,-,-,30000,null}{io=0,kio=0,kro=0} idle timeout check, elapsed: 0 ms, remaining: 30000 ms
+00:36:11.482 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG o.e.jetty.server.HttpConnection - New HTTP Connection HttpConnection@62f6e10d{IDLE}
+00:36:11.482 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG o.e.jetty.io.AbstractConnection - onOpen HttpConnection@62f6e10d{IDLE}
+00:36:11.482 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG o.e.jetty.io.AbstractConnection - fillInterested HttpConnection@62f6e10d{IDLE}
+00:36:11.482 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG o.e.jetty.io.AbstractConnection - IDLE-->FILL_INTERESTED HttpConnection@62f6e10d{FILL_INTERESTED}
+00:36:11.482 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 0 -> 1 for SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=0,kro=0}
+00:36:11.482 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@2f30de8c
+00:36:11.482 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 0 -> 1
+00:36:11.482 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Created SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=1,kro=0}
+00:36:11.482 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.483 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 1/1 selected
+00:36:11.483 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 1 -> 0
+00:36:11.483 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 1 -> 0 for SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,Open,in,out,R,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.483 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@2f30de8c
+00:36:11.483 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG o.e.jetty.io.AbstractConnection - FILL_INTERESTED-->FILLING HttpConnection@62f6e10d{FILLING}
+00:36:11.483 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.483 [qtp1975878926-31] DEBUG o.e.jetty.server.HttpConnection - HttpConnection@62f6e10d{FILLING} onFillable HttpChannelState@1b5be79b{s=IDLE i=true a=null}
+00:36:11.483 [qtp1975878926-31] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 195 SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - parseNext s=START HeapByteBuffer@159c1a80[p=0,l=195,c=8192,r=195]={<<<GET /Test HTTP/1.... keep-alive||||>>>�����������������...���������������}
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - START --> SPACE1
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - SPACE1 --> URI
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - URI --> SPACE2
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - SPACE2 --> REQUEST_VERSION
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - REQUEST_VERSION --> HEADER
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_NAME
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_NAME --> HEADER_VALUE
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.484 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.485 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.485 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.485 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.485 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_VALUE
+00:36:11.485 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.485 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> END
+00:36:11.485 [qtp1975878926-31] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@11a38ceb{r=1,a=IDLE,uri=-} messageComplete
+00:36:11.485 [qtp1975878926-31] DEBUG org.eclipse.jetty.server.HttpInput - HttpInputOverHTTP@54a110bb EOF
+00:36:11.485 [qtp1975878926-31] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@11a38ceb{r=1,a=IDLE,uri=-} handle enter
+00:36:11.485 [qtp1975878926-31 - /Test] DEBUG o.e.jetty.server.HttpChannelState - HttpChannelState@1b5be79b{s=IDLE i=true a=null} handling IDLE
+00:36:11.485 [qtp1975878926-31 - /Test] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@11a38ceb{r=1,a=DISPATCHED,uri=/Test} action REQUEST_DISPATCH
+00:36:11.486 [qtp1975878926-31 - /Test] DEBUG org.eclipse.jetty.server.Server - REQUEST /Test on HttpChannelOverHttp@11a38ceb{r=1,a=DISPATCHED,uri=/Test}
+00:36:11.490 [qtp1975878926-31 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@348eeff4[ITERATING] generate: NEED_HEADER (null,[p=0,l=0,c=0,r=0],true)@START
+00:36:11.491 [qtp1975878926-31 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@348eeff4[ITERATING] generate: FLUSH ([p=0,l=79,c=8192,r=79],[p=0,l=0,c=0,r=0],true)@COMPLETING
+00:36:11.491 [qtp1975878926-31 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - write: WriteFlusher@2ba8d6bc{IDLE} [HeapByteBuffer@361a75e4[p=0,l=79,c=8192,r=79]={<<<HTTP/1.1 400 Bad ....v20140108)||||>>>�����������������...���������������}]
+00:36:11.491 [qtp1975878926-31 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@2ba8d6bc{WRITING}:IDLE-->WRITING
+00:36:11.491 [qtp1975878926-31 - /Test] DEBUG org.eclipse.jetty.io.ChannelEndPoint - flushed 79 SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,Open,in,out,-,W,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.491 [qtp1975878926-31 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - flushed true
+00:36:11.492 [qtp1975878926-31 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@2ba8d6bc{IDLE}:WRITING-->IDLE
+00:36:11.492 [qtp1975878926-31 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@348eeff4[ITERATING] generate: DONE ([p=79,l=79,c=8192,r=0],[p=0,l=0,c=0,r=0],true)@END
+00:36:11.492 [qtp1975878926-31 - /Test] DEBUG org.eclipse.jetty.server.Server - RESPONSE /Test  400 handled=true
+00:36:11.492 [qtp1975878926-31 - /Test] DEBUG o.e.jetty.server.HttpChannelState - HttpChannelState@1b5be79b{s=DISPATCHED i=true a=null} unhandle DISPATCHED
+00:36:11.492 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - reset HttpParser{s=END,0 of 0}
+00:36:11.492 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - END --> START
+00:36:11.492 [qtp1975878926-31] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@11a38ceb{r=1,a=IDLE,uri=-} handle exit, result COMPLETE
+00:36:11.493 [qtp1975878926-31] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 0 SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.493 [qtp1975878926-31] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 0 SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.493 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - parseNext s=START HeapByteBuffer@361a75e4[p=0,l=0,c=8192,r=0]={<<<>>>HTTP/1.1 400 Bad ...���������������}
+00:36:11.493 [qtp1975878926-31] DEBUG o.e.jetty.io.AbstractConnection - fillInterested HttpConnection@62f6e10d{FILLING}
+00:36:11.493 [qtp1975878926-31] DEBUG o.e.jetty.io.AbstractConnection - FILLING-->FILLING_FILL_INTERESTED HttpConnection@62f6e10d{FILLING_FILL_INTERESTED}
+00:36:11.493 [qtp1975878926-31] DEBUG o.e.jetty.io.AbstractConnection - FILLING_FILL_INTERESTED-->FILL_INTERESTED HttpConnection@62f6e10d{FILL_INTERESTED}
+00:36:11.493 [qtp1975878926-31] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 0 -> 1 for SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=0,kro=1}
+00:36:11.493 [qtp1975878926-31] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@2f30de8c
+00:36:11.494 [qtp1975878926-31] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 0 -> 1
+00:36:11.494 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/1 selected
+00:36:11.494 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.495 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.server.Server@66fb1da0
+00:36:11.496 [Test worker] DEBUG org.eclipse.jetty.server.Server - Graceful shutdown org.eclipse.jetty.server.Server@66fb1da0 by 
+00:36:11.496 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping ServerConnector@147126e5{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.496 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@20d9796e
+00:36:11.497 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@5ef884d9 keys=1 selected=0
+00:36:11.497 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@5ef884d9 keys=1 selected=0
+00:36:11.497 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@19b0a2cc
+00:36:11.497 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/1 selected
+00:36:11.497 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@19b0a2cc
+00:36:11.498 [qtp1975878926-32] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onClose SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,CLOSED,in,out,R,-,30000,HttpConnection}{io=1,kio=1,kro=1}
+00:36:11.498 [qtp1975878926-31] DEBUG o.e.jetty.io.AbstractConnection - FILL_INTERESTED-->IDLE HttpConnection@62f6e10d{IDLE}
+00:36:11.498 [qtp1975878926-32] DEBUG org.eclipse.jetty.io.ChannelEndPoint - close SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,CLOSED,in,out,-,-,30000,HttpConnection}{io=1,kio=1,kro=1}
+00:36:11.498 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - close HttpParser{s=START,0 of -1}
+00:36:11.498 [qtp1975878926-31] DEBUG org.eclipse.jetty.http.HttpParser - START --> CLOSED
+00:36:11.498 [qtp1975878926-32] DEBUG org.eclipse.jetty.io.SelectorManager - Destroyed SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,CLOSED,ISHUT,OSHUT,-,-,30000,HttpConnection}{io=1,kio=-1,kro=-1}
+00:36:11.498 [qtp1975878926-31] DEBUG o.e.jetty.io.AbstractConnection - HttpConnection@62f6e10d{IDLE} onFillInterestedFailed java.nio.channels.ClosedChannelException
+00:36:11.498 [qtp1975878926-32] DEBUG o.e.jetty.io.AbstractConnection - onClose HttpConnection@62f6e10d{IDLE}
+00:36:11.498 [qtp1975878926-32] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onClose SelectChannelEndPoint@23cbeb36{/127.0.0.1:61112<->9998,CLOSED,ISHUT,OSHUT,-,-,30000,HttpConnection}{io=1,kio=-1,kro=-1}
+00:36:11.499 [qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1975878926-25-selector-ServerConnectorManager@20d9796e/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@5ef884d9 keys=-1 selected=-1
+00:36:11.499 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@5ef884d9 keys=-1 selected=-1
+00:36:11.499 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@5ef884d9 keys=-1 selected=-1
+00:36:11.499 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@37c28d71 keys=0 selected=0
+00:36:11.499 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@37c28d71 keys=0 selected=0
+00:36:11.499 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@75d15757
+00:36:11.500 [qtp1975878926-26-selector-ServerConnectorManager@20d9796e/1] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.500 [qtp1975878926-26-selector-ServerConnectorManager@20d9796e/1] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@75d15757
+00:36:11.500 [qtp1975878926-26-selector-ServerConnectorManager@20d9796e/1] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1975878926-26-selector-ServerConnectorManager@20d9796e/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@37c28d71 keys=-1 selected=-1
+00:36:11.500 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@37c28d71 keys=-1 selected=-1
+00:36:11.500 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@37c28d71 keys=-1 selected=-1
+00:36:11.501 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@5cbb90ee keys=0 selected=0
+00:36:11.501 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@5cbb90ee keys=0 selected=0
+00:36:11.501 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@7555fce1
+00:36:11.501 [qtp1975878926-27-selector-ServerConnectorManager@20d9796e/2] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.501 [qtp1975878926-27-selector-ServerConnectorManager@20d9796e/2] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@7555fce1
+00:36:11.501 [qtp1975878926-27-selector-ServerConnectorManager@20d9796e/2] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1975878926-27-selector-ServerConnectorManager@20d9796e/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@5cbb90ee keys=-1 selected=-1
+00:36:11.502 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@5cbb90ee keys=-1 selected=-1
+00:36:11.502 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@5cbb90ee keys=-1 selected=-1
+00:36:11.502 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@167eecb keys=0 selected=0
+00:36:11.502 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@167eecb keys=0 selected=0
+00:36:11.502 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@1fefa92e
+00:36:11.503 [qtp1975878926-28-selector-ServerConnectorManager@20d9796e/3] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.503 [qtp1975878926-28-selector-ServerConnectorManager@20d9796e/3] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@1fefa92e
+00:36:11.503 [qtp1975878926-28-selector-ServerConnectorManager@20d9796e/3] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1975878926-28-selector-ServerConnectorManager@20d9796e/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@167eecb keys=-1 selected=-1
+00:36:11.503 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@167eecb keys=-1 selected=-1
+00:36:11.504 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@167eecb keys=-1 selected=-1
+00:36:11.504 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@20d9796e
+00:36:11.504 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping HttpConnectionFactory@3c5b81d{HTTP/1.1}
+00:36:11.504 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED HttpConnectionFactory@3c5b81d{HTTP/1.1}
+00:36:11.505 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@2ad92803
+00:36:11.505 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@2ad92803
+00:36:11.506 [Test worker] INFO  o.e.jetty.server.ServerConnector - Stopped ServerConnector@147126e5{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.506 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED ServerConnector@147126e5{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.506 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - stopping org.eclipse.jetty.server.Server@66fb1da0
+00:36:11.507 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.glassfish.jersey.jetty.JettyHttpContainer@43a3c446
+00:36:11.507 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - stopping org.glassfish.jersey.jetty.JettyHttpContainer@43a3c446
+00:36:11.509 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.glassfish.jersey.jetty.JettyHttpContainer@43a3c446
+00:36:11.510 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping qtp1975878926{STARTED,8<=8<=200,i=8,q=0}
+00:36:11.512 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED qtp1975878926{STOPPED,8<=0<=200,i=0,q=0}
+00:36:11.512 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.server.Server@66fb1da0
+00:36:11.583 [Test worker] DEBUG o.h.v.i.e.r.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+00:36:11.584 [Test worker] DEBUG o.h.v.i.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+00:36:11.585 [Test worker] DEBUG o.h.v.i.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+00:36:11.606 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@6b319832 added {qtp1939616802{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+00:36:11.606 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - HttpConnectionFactory@27e6f956{HTTP/1.1} added {HttpConfiguration@6b5ad1fc{32768,8192/8192,https://:0,[]},POJO}
+00:36:11.606 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1ee23285{null}{0.0.0.0:0} added {org.eclipse.jetty.server.Server@6b319832,UNMANAGED}
+00:36:11.607 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1ee23285{null}{0.0.0.0:0} added {qtp1939616802{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+00:36:11.607 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1ee23285{null}{0.0.0.0:0} added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@7975c591,AUTO}
+00:36:11.607 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1ee23285{null}{0.0.0.0:0} added {org.eclipse.jetty.io.ArrayByteBufferPool@e5e5446,POJO}
+00:36:11.607 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1ee23285{null}{0.0.0.0:0} added {HttpConnectionFactory@27e6f956{HTTP/1.1},AUTO}
+00:36:11.607 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1ee23285{HTTP/1.1}{0.0.0.0:0} added {org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@3336a140,MANAGED}
+00:36:11.607 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@6b319832 added {ServerConnector@1ee23285{HTTP/1.1}{0.0.0.0:9998},AUTO}
+00:36:11.608 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@6b319832 added {org.glassfish.jersey.jetty.JettyHttpContainer@64b8b3fa,AUTO}
+00:36:11.608 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.server.Server@6b319832
+00:36:11.608 [Test worker] INFO  org.eclipse.jetty.server.Server - jetty-9.1.1.v20140108
+00:36:11.608 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - starting org.eclipse.jetty.server.Server@6b319832
+00:36:11.608 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting qtp1939616802{STOPPED,8<=0<=200,i=0,q=0}
+00:36:11.610 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED qtp1939616802{STARTED,8<=8<=200,i=7,q=0}
+00:36:11.610 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.glassfish.jersey.jetty.JettyHttpContainer@64b8b3fa
+00:36:11.610 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - starting org.glassfish.jersey.jetty.JettyHttpContainer@64b8b3fa
+00:36:11.610 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.glassfish.jersey.jetty.JettyHttpContainer@64b8b3fa
+00:36:11.610 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting ServerConnector@1ee23285{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.611 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1ee23285{HTTP/1.1}{0.0.0.0:9998} added {sun.nio.ch.ServerSocketChannelImpl[/0:0:0:0:0:0:0:0:9998],POJO}
+00:36:11.611 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@7975c591
+00:36:11.611 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@7975c591
+00:36:11.611 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting HttpConnectionFactory@27e6f956{HTTP/1.1}
+00:36:11.611 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED HttpConnectionFactory@27e6f956{HTTP/1.1}
+00:36:11.611 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@3336a140
+00:36:11.611 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@6bc1c3f2 keys=-1 selected=-1
+00:36:11.611 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@6bc1c3f2 keys=0 selected=0
+00:36:11.611 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@174146a8 keys=-1 selected=-1
+00:36:11.611 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1939616802-37-selector-ServerConnectorManager@3336a140/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@6bc1c3f2 keys=0 selected=0
+00:36:11.611 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@174146a8 keys=0 selected=0
+00:36:11.611 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.614 [qtp1939616802-38-selector-ServerConnectorManager@3336a140/1] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1939616802-38-selector-ServerConnectorManager@3336a140/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@174146a8 keys=0 selected=0
+00:36:11.615 [qtp1939616802-38-selector-ServerConnectorManager@3336a140/1] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.615 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@11fbc9a1 keys=-1 selected=-1
+00:36:11.615 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@11fbc9a1 keys=0 selected=0
+00:36:11.616 [qtp1939616802-39-selector-ServerConnectorManager@3336a140/2] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1939616802-39-selector-ServerConnectorManager@3336a140/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@11fbc9a1 keys=0 selected=0
+00:36:11.616 [qtp1939616802-39-selector-ServerConnectorManager@3336a140/2] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.616 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@30fd8f07 keys=-1 selected=-1
+00:36:11.616 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@30fd8f07 keys=0 selected=0
+00:36:11.616 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@3336a140
+00:36:11.617 [qtp1939616802-40-selector-ServerConnectorManager@3336a140/3] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1939616802-40-selector-ServerConnectorManager@3336a140/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@30fd8f07 keys=0 selected=0
+00:36:11.617 [qtp1939616802-40-selector-ServerConnectorManager@3336a140/3] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.617 [Test worker] INFO  o.e.jetty.server.ServerConnector - Started ServerConnector@1ee23285{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.617 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED ServerConnector@1ee23285{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.617 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.server.Server@6b319832
+00:36:11.644 [qtp1939616802-41-acceptor-0-ServerConnector@1ee23285{HTTP/1.1}{0.0.0.0:9998}] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@19f0814c
+00:36:11.644 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.644 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@19f0814c
+00:36:11.644 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onOpen SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,Open,in,out,-,-,30000,null}{io=0,kio=0,kro=0}
+00:36:11.644 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,Open,in,out,-,-,30000,null}{io=0,kio=0,kro=0} idle timeout check, elapsed: 0 ms, remaining: 30000 ms
+00:36:11.645 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG o.e.jetty.server.HttpConnection - New HTTP Connection HttpConnection@61037caf{IDLE}
+00:36:11.645 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG o.e.jetty.io.AbstractConnection - onOpen HttpConnection@61037caf{IDLE}
+00:36:11.645 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG o.e.jetty.io.AbstractConnection - fillInterested HttpConnection@61037caf{IDLE}
+00:36:11.645 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG o.e.jetty.io.AbstractConnection - IDLE-->FILL_INTERESTED HttpConnection@61037caf{FILL_INTERESTED}
+00:36:11.645 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 0 -> 1 for SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=0,kro=0}
+00:36:11.645 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@37125f1
+00:36:11.645 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 0 -> 1
+00:36:11.645 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Created SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=1,kro=0}
+00:36:11.645 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.646 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 1/1 selected
+00:36:11.646 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 1 -> 0
+00:36:11.646 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 1 -> 0 for SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,Open,in,out,R,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.646 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@37125f1
+00:36:11.646 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG o.e.jetty.io.AbstractConnection - FILL_INTERESTED-->FILLING HttpConnection@61037caf{FILLING}
+00:36:11.646 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.646 [qtp1939616802-43] DEBUG o.e.jetty.server.HttpConnection - HttpConnection@61037caf{FILLING} onFillable HttpChannelState@7e5fce44{s=IDLE i=true a=null}
+00:36:11.646 [qtp1939616802-43] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 195 SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.646 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - parseNext s=START HeapByteBuffer@70983fff[p=0,l=195,c=8192,r=195]={<<<GET /Test HTTP/1.... keep-alive||||>>>�����������������...���������������}
+00:36:11.646 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - START --> SPACE1
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - SPACE1 --> URI
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - URI --> SPACE2
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - SPACE2 --> REQUEST_VERSION
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - REQUEST_VERSION --> HEADER
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_NAME
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_NAME --> HEADER_VALUE
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_VALUE
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.647 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> END
+00:36:11.648 [qtp1939616802-43] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@74a7a534{r=1,a=IDLE,uri=-} messageComplete
+00:36:11.648 [qtp1939616802-43] DEBUG org.eclipse.jetty.server.HttpInput - HttpInputOverHTTP@31a535c4 EOF
+00:36:11.648 [qtp1939616802-43] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@74a7a534{r=1,a=IDLE,uri=-} handle enter
+00:36:11.648 [qtp1939616802-43 - /Test] DEBUG o.e.jetty.server.HttpChannelState - HttpChannelState@7e5fce44{s=IDLE i=true a=null} handling IDLE
+00:36:11.648 [qtp1939616802-43 - /Test] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@74a7a534{r=1,a=DISPATCHED,uri=/Test} action REQUEST_DISPATCH
+00:36:11.648 [qtp1939616802-43 - /Test] DEBUG org.eclipse.jetty.server.Server - REQUEST /Test on HttpChannelOverHttp@74a7a534{r=1,a=DISPATCHED,uri=/Test}
+00:36:11.652 [qtp1939616802-43 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@5e4643[ITERATING] generate: NEED_HEADER (null,[p=0,l=0,c=0,r=0],true)@START
+00:36:11.652 [qtp1939616802-43 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@5e4643[ITERATING] generate: FLUSH ([p=0,l=79,c=8192,r=79],[p=0,l=0,c=0,r=0],true)@COMPLETING
+00:36:11.653 [qtp1939616802-43 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - write: WriteFlusher@518aca8b{IDLE} [HeapByteBuffer@4919cd79[p=0,l=79,c=8192,r=79]={<<<HTTP/1.1 400 Bad ....v20140108)||||>>>�����������������...���������������}]
+00:36:11.653 [qtp1939616802-43 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@518aca8b{WRITING}:IDLE-->WRITING
+00:36:11.653 [qtp1939616802-43 - /Test] DEBUG org.eclipse.jetty.io.ChannelEndPoint - flushed 79 SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,Open,in,out,-,W,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.653 [qtp1939616802-43 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - flushed true
+00:36:11.653 [qtp1939616802-43 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@518aca8b{IDLE}:WRITING-->IDLE
+00:36:11.653 [qtp1939616802-43 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@5e4643[ITERATING] generate: DONE ([p=79,l=79,c=8192,r=0],[p=0,l=0,c=0,r=0],true)@END
+00:36:11.653 [qtp1939616802-43 - /Test] DEBUG org.eclipse.jetty.server.Server - RESPONSE /Test  400 handled=true
+00:36:11.653 [qtp1939616802-43 - /Test] DEBUG o.e.jetty.server.HttpChannelState - HttpChannelState@7e5fce44{s=DISPATCHED i=true a=null} unhandle DISPATCHED
+00:36:11.653 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - reset HttpParser{s=END,0 of 0}
+00:36:11.653 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - END --> START
+00:36:11.654 [qtp1939616802-43] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@74a7a534{r=1,a=IDLE,uri=-} handle exit, result COMPLETE
+00:36:11.654 [qtp1939616802-43] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 0 SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.654 [qtp1939616802-43] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 0 SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.654 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - parseNext s=START HeapByteBuffer@4919cd79[p=0,l=0,c=8192,r=0]={<<<>>>HTTP/1.1 400 Bad ...���������������}
+00:36:11.654 [qtp1939616802-43] DEBUG o.e.jetty.io.AbstractConnection - fillInterested HttpConnection@61037caf{FILLING}
+00:36:11.654 [qtp1939616802-43] DEBUG o.e.jetty.io.AbstractConnection - FILLING-->FILLING_FILL_INTERESTED HttpConnection@61037caf{FILLING_FILL_INTERESTED}
+00:36:11.654 [qtp1939616802-43] DEBUG o.e.jetty.io.AbstractConnection - FILLING_FILL_INTERESTED-->FILL_INTERESTED HttpConnection@61037caf{FILL_INTERESTED}
+00:36:11.654 [qtp1939616802-43] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 0 -> 1 for SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=0,kro=1}
+00:36:11.654 [qtp1939616802-43] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@37125f1
+00:36:11.655 [qtp1939616802-43] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 0 -> 1
+00:36:11.655 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/1 selected
+00:36:11.655 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.656 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.server.Server@6b319832
+00:36:11.657 [Test worker] DEBUG org.eclipse.jetty.server.Server - Graceful shutdown org.eclipse.jetty.server.Server@6b319832 by 
+00:36:11.657 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping ServerConnector@1ee23285{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.657 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@3336a140
+00:36:11.657 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@6bc1c3f2 keys=1 selected=0
+00:36:11.657 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@6bc1c3f2 keys=1 selected=0
+00:36:11.657 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@7aa4708c
+00:36:11.658 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/1 selected
+00:36:11.658 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@7aa4708c
+00:36:11.658 [qtp1939616802-44] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onClose SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,CLOSED,in,out,R,-,30000,HttpConnection}{io=1,kio=1,kro=1}
+00:36:11.659 [qtp1939616802-43] DEBUG o.e.jetty.io.AbstractConnection - FILL_INTERESTED-->IDLE HttpConnection@61037caf{IDLE}
+00:36:11.659 [qtp1939616802-44] DEBUG org.eclipse.jetty.io.ChannelEndPoint - close SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,CLOSED,in,out,-,-,30000,HttpConnection}{io=1,kio=1,kro=1}
+00:36:11.659 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - close HttpParser{s=START,0 of -1}
+00:36:11.659 [qtp1939616802-43] DEBUG org.eclipse.jetty.http.HttpParser - START --> CLOSED
+00:36:11.659 [qtp1939616802-43] DEBUG o.e.jetty.io.AbstractConnection - HttpConnection@61037caf{IDLE} onFillInterestedFailed java.nio.channels.ClosedChannelException
+00:36:11.659 [qtp1939616802-44] DEBUG org.eclipse.jetty.io.SelectorManager - Destroyed SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,CLOSED,ISHUT,OSHUT,-,-,30000,HttpConnection}{io=1,kio=-1,kro=-1}
+00:36:11.659 [qtp1939616802-44] DEBUG o.e.jetty.io.AbstractConnection - onClose HttpConnection@61037caf{IDLE}
+00:36:11.659 [qtp1939616802-44] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onClose SelectChannelEndPoint@203e7694{/127.0.0.1:61113<->9998,CLOSED,ISHUT,OSHUT,-,-,30000,HttpConnection}{io=1,kio=-1,kro=-1}
+00:36:11.659 [qtp1939616802-37-selector-ServerConnectorManager@3336a140/0] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1939616802-37-selector-ServerConnectorManager@3336a140/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@6bc1c3f2 keys=-1 selected=-1
+00:36:11.659 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@6bc1c3f2 keys=-1 selected=-1
+00:36:11.659 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@6bc1c3f2 keys=-1 selected=-1
+00:36:11.660 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@174146a8 keys=0 selected=0
+00:36:11.660 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@174146a8 keys=0 selected=0
+00:36:11.660 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@6f886b7f
+00:36:11.660 [qtp1939616802-38-selector-ServerConnectorManager@3336a140/1] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.660 [qtp1939616802-38-selector-ServerConnectorManager@3336a140/1] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@6f886b7f
+00:36:11.660 [qtp1939616802-38-selector-ServerConnectorManager@3336a140/1] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1939616802-38-selector-ServerConnectorManager@3336a140/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@174146a8 keys=-1 selected=-1
+00:36:11.660 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@174146a8 keys=-1 selected=-1
+00:36:11.660 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@174146a8 keys=-1 selected=-1
+00:36:11.660 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@11fbc9a1 keys=0 selected=0
+00:36:11.660 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@11fbc9a1 keys=0 selected=0
+00:36:11.661 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@3e5d3f05
+00:36:11.661 [qtp1939616802-39-selector-ServerConnectorManager@3336a140/2] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.661 [qtp1939616802-39-selector-ServerConnectorManager@3336a140/2] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@3e5d3f05
+00:36:11.661 [qtp1939616802-39-selector-ServerConnectorManager@3336a140/2] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1939616802-39-selector-ServerConnectorManager@3336a140/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@11fbc9a1 keys=-1 selected=-1
+00:36:11.661 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@11fbc9a1 keys=-1 selected=-1
+00:36:11.661 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@11fbc9a1 keys=-1 selected=-1
+00:36:11.661 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@30fd8f07 keys=0 selected=0
+00:36:11.661 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@30fd8f07 keys=0 selected=0
+00:36:11.662 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@481fe18c
+00:36:11.662 [qtp1939616802-40-selector-ServerConnectorManager@3336a140/3] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.662 [qtp1939616802-40-selector-ServerConnectorManager@3336a140/3] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@481fe18c
+00:36:11.662 [qtp1939616802-40-selector-ServerConnectorManager@3336a140/3] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1939616802-40-selector-ServerConnectorManager@3336a140/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@30fd8f07 keys=-1 selected=-1
+00:36:11.662 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@30fd8f07 keys=-1 selected=-1
+00:36:11.662 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@30fd8f07 keys=-1 selected=-1
+00:36:11.662 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@3336a140
+00:36:11.662 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping HttpConnectionFactory@27e6f956{HTTP/1.1}
+00:36:11.663 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED HttpConnectionFactory@27e6f956{HTTP/1.1}
+00:36:11.663 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@7975c591
+00:36:11.663 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@7975c591
+00:36:11.663 [Test worker] INFO  o.e.jetty.server.ServerConnector - Stopped ServerConnector@1ee23285{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.663 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED ServerConnector@1ee23285{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.664 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - stopping org.eclipse.jetty.server.Server@6b319832
+00:36:11.664 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.glassfish.jersey.jetty.JettyHttpContainer@64b8b3fa
+00:36:11.664 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - stopping org.glassfish.jersey.jetty.JettyHttpContainer@64b8b3fa
+00:36:11.666 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.glassfish.jersey.jetty.JettyHttpContainer@64b8b3fa
+00:36:11.666 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping qtp1939616802{STARTED,8<=8<=200,i=8,q=0}
+00:36:11.668 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED qtp1939616802{STOPPED,8<=0<=200,i=0,q=0}
+00:36:11.669 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.server.Server@6b319832
+00:36:11.734 [Test worker] DEBUG o.h.v.i.e.r.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+00:36:11.735 [Test worker] DEBUG o.h.v.i.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+00:36:11.736 [Test worker] DEBUG o.h.v.i.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+00:36:11.741 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@14d4061d added {qtp269504226{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+00:36:11.741 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - HttpConnectionFactory@4331f88c{HTTP/1.1} added {HttpConfiguration@46ad85d8{32768,8192/8192,https://:0,[]},POJO}
+00:36:11.741 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@6008a4c9{null}{0.0.0.0:0} added {org.eclipse.jetty.server.Server@14d4061d,UNMANAGED}
+00:36:11.742 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@6008a4c9{null}{0.0.0.0:0} added {qtp269504226{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+00:36:11.742 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@6008a4c9{null}{0.0.0.0:0} added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@5458a4b1,AUTO}
+00:36:11.742 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@6008a4c9{null}{0.0.0.0:0} added {org.eclipse.jetty.io.ArrayByteBufferPool@2c31d5dc,POJO}
+00:36:11.742 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@6008a4c9{null}{0.0.0.0:0} added {HttpConnectionFactory@4331f88c{HTTP/1.1},AUTO}
+00:36:11.743 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@6008a4c9{HTTP/1.1}{0.0.0.0:0} added {org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@61816c7,MANAGED}
+00:36:11.743 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@14d4061d added {ServerConnector@6008a4c9{HTTP/1.1}{0.0.0.0:9998},AUTO}
+00:36:11.743 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@14d4061d added {org.glassfish.jersey.jetty.JettyHttpContainer@17f45799,AUTO}
+00:36:11.743 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.server.Server@14d4061d
+00:36:11.743 [Test worker] INFO  org.eclipse.jetty.server.Server - jetty-9.1.1.v20140108
+00:36:11.743 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - starting org.eclipse.jetty.server.Server@14d4061d
+00:36:11.743 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting qtp269504226{STOPPED,8<=0<=200,i=0,q=0}
+00:36:11.745 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED qtp269504226{STARTED,8<=8<=200,i=7,q=0}
+00:36:11.745 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.glassfish.jersey.jetty.JettyHttpContainer@17f45799
+00:36:11.745 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - starting org.glassfish.jersey.jetty.JettyHttpContainer@17f45799
+00:36:11.745 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.glassfish.jersey.jetty.JettyHttpContainer@17f45799
+00:36:11.745 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting ServerConnector@6008a4c9{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.746 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@6008a4c9{HTTP/1.1}{0.0.0.0:9998} added {sun.nio.ch.ServerSocketChannelImpl[/0:0:0:0:0:0:0:0:9998],POJO}
+00:36:11.746 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@5458a4b1
+00:36:11.746 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@5458a4b1
+00:36:11.746 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting HttpConnectionFactory@4331f88c{HTTP/1.1}
+00:36:11.746 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED HttpConnectionFactory@4331f88c{HTTP/1.1}
+00:36:11.746 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@61816c7
+00:36:11.746 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@327f9742 keys=-1 selected=-1
+00:36:11.746 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@327f9742 keys=0 selected=0
+00:36:11.746 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp269504226-48-selector-ServerConnectorManager@61816c7/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@327f9742 keys=0 selected=0
+00:36:11.747 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.747 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@10422be4 keys=-1 selected=-1
+00:36:11.747 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@10422be4 keys=0 selected=0
+00:36:11.747 [qtp269504226-49-selector-ServerConnectorManager@61816c7/1] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp269504226-49-selector-ServerConnectorManager@61816c7/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@10422be4 keys=0 selected=0
+00:36:11.747 [qtp269504226-49-selector-ServerConnectorManager@61816c7/1] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.747 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@56aaa905 keys=-1 selected=-1
+00:36:11.748 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@56aaa905 keys=0 selected=0
+00:36:11.748 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@635774d6 keys=-1 selected=-1
+00:36:11.748 [qtp269504226-50-selector-ServerConnectorManager@61816c7/2] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp269504226-50-selector-ServerConnectorManager@61816c7/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@56aaa905 keys=0 selected=0
+00:36:11.748 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@635774d6 keys=0 selected=0
+00:36:11.748 [qtp269504226-50-selector-ServerConnectorManager@61816c7/2] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.748 [qtp269504226-51-selector-ServerConnectorManager@61816c7/3] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp269504226-51-selector-ServerConnectorManager@61816c7/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@635774d6 keys=0 selected=0
+00:36:11.749 [qtp269504226-51-selector-ServerConnectorManager@61816c7/3] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.749 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@61816c7
+00:36:11.749 [Test worker] INFO  o.e.jetty.server.ServerConnector - Started ServerConnector@6008a4c9{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.749 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED ServerConnector@6008a4c9{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.749 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.server.Server@14d4061d
+00:36:11.776 [qtp269504226-52-acceptor-0-ServerConnector@6008a4c9{HTTP/1.1}{0.0.0.0:9998}] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@4d8319cf
+00:36:11.776 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.776 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@4d8319cf
+00:36:11.777 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onOpen SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,Open,in,out,-,-,30000,null}{io=0,kio=0,kro=0}
+00:36:11.777 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,Open,in,out,-,-,30000,null}{io=0,kio=0,kro=0} idle timeout check, elapsed: 1 ms, remaining: 29999 ms
+00:36:11.777 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG o.e.jetty.server.HttpConnection - New HTTP Connection HttpConnection@7d0abab8{IDLE}
+00:36:11.777 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG o.e.jetty.io.AbstractConnection - onOpen HttpConnection@7d0abab8{IDLE}
+00:36:11.777 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG o.e.jetty.io.AbstractConnection - fillInterested HttpConnection@7d0abab8{IDLE}
+00:36:11.777 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG o.e.jetty.io.AbstractConnection - IDLE-->FILL_INTERESTED HttpConnection@7d0abab8{FILL_INTERESTED}
+00:36:11.777 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 0 -> 1 for SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=0,kro=0}
+00:36:11.777 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@4d0f3094
+00:36:11.777 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 0 -> 1
+00:36:11.778 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Created SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=1,kro=0}
+00:36:11.778 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.783 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 1/1 selected
+00:36:11.783 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 1 -> 0
+00:36:11.783 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 1 -> 0 for SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,Open,in,out,R,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.783 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@4d0f3094
+00:36:11.783 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG o.e.jetty.io.AbstractConnection - FILL_INTERESTED-->FILLING HttpConnection@7d0abab8{FILLING}
+00:36:11.783 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.783 [qtp269504226-54] DEBUG o.e.jetty.server.HttpConnection - HttpConnection@7d0abab8{FILLING} onFillable HttpChannelState@6c09b9cc{s=IDLE i=true a=null}
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 150 SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - parseNext s=START HeapByteBuffer@62ce5a3d[p=0,l=150,c=8192,r=150]={<<<GET /Test HTTP/1.... keep-alive||||>>>�����������������...���������������}
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - START --> SPACE1
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - SPACE1 --> URI
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - URI --> SPACE2
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - SPACE2 --> REQUEST_VERSION
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - REQUEST_VERSION --> HEADER
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_VALUE
+00:36:11.784 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.785 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> END
+00:36:11.785 [qtp269504226-54] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@66f1d2bc{r=1,a=IDLE,uri=-} messageComplete
+00:36:11.785 [qtp269504226-54] DEBUG org.eclipse.jetty.server.HttpInput - HttpInputOverHTTP@23f35006 EOF
+00:36:11.785 [qtp269504226-54] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@66f1d2bc{r=1,a=IDLE,uri=-} handle enter
+00:36:11.785 [qtp269504226-54 - /Test] DEBUG o.e.jetty.server.HttpChannelState - HttpChannelState@6c09b9cc{s=IDLE i=true a=null} handling IDLE
+00:36:11.785 [qtp269504226-54 - /Test] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@66f1d2bc{r=1,a=DISPATCHED,uri=/Test} action REQUEST_DISPATCH
+00:36:11.785 [qtp269504226-54 - /Test] DEBUG org.eclipse.jetty.server.Server - REQUEST /Test on HttpChannelOverHttp@66f1d2bc{r=1,a=DISPATCHED,uri=/Test}
+00:36:11.787 [qtp269504226-54 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@129af7b0[ITERATING] generate: NEED_HEADER (null,[p=0,l=0,c=0,r=0],true)@START
+00:36:11.787 [qtp269504226-54 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@129af7b0[ITERATING] generate: FLUSH ([p=0,l=79,c=8192,r=79],[p=0,l=0,c=0,r=0],true)@COMPLETING
+00:36:11.787 [qtp269504226-54 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - write: WriteFlusher@43dcaf49{IDLE} [HeapByteBuffer@7a16b36d[p=0,l=79,c=8192,r=79]={<<<HTTP/1.1 400 Bad ....v20140108)||||>>>�����������������...���������������}]
+00:36:11.787 [qtp269504226-54 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@43dcaf49{WRITING}:IDLE-->WRITING
+00:36:11.787 [qtp269504226-54 - /Test] DEBUG org.eclipse.jetty.io.ChannelEndPoint - flushed 79 SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,Open,in,out,-,W,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.787 [qtp269504226-54 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - flushed true
+00:36:11.787 [qtp269504226-54 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@43dcaf49{IDLE}:WRITING-->IDLE
+00:36:11.788 [qtp269504226-54 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@129af7b0[ITERATING] generate: DONE ([p=79,l=79,c=8192,r=0],[p=0,l=0,c=0,r=0],true)@END
+00:36:11.788 [qtp269504226-54 - /Test] DEBUG org.eclipse.jetty.server.Server - RESPONSE /Test  400 handled=true
+00:36:11.788 [qtp269504226-54 - /Test] DEBUG o.e.jetty.server.HttpChannelState - HttpChannelState@6c09b9cc{s=DISPATCHED i=true a=null} unhandle DISPATCHED
+00:36:11.788 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - reset HttpParser{s=END,0 of 0}
+00:36:11.788 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - END --> START
+00:36:11.788 [qtp269504226-54] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@66f1d2bc{r=1,a=IDLE,uri=-} handle exit, result COMPLETE
+00:36:11.788 [qtp269504226-54] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 0 SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.788 [qtp269504226-54] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 0 SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.788 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - parseNext s=START HeapByteBuffer@7a16b36d[p=0,l=0,c=8192,r=0]={<<<>>>HTTP/1.1 400 Bad ...���������������}
+00:36:11.789 [qtp269504226-54] DEBUG o.e.jetty.io.AbstractConnection - fillInterested HttpConnection@7d0abab8{FILLING}
+00:36:11.789 [qtp269504226-54] DEBUG o.e.jetty.io.AbstractConnection - FILLING-->FILLING_FILL_INTERESTED HttpConnection@7d0abab8{FILLING_FILL_INTERESTED}
+00:36:11.789 [qtp269504226-54] DEBUG o.e.jetty.io.AbstractConnection - FILLING_FILL_INTERESTED-->FILL_INTERESTED HttpConnection@7d0abab8{FILL_INTERESTED}
+00:36:11.789 [qtp269504226-54] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 0 -> 1 for SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=0,kro=1}
+00:36:11.789 [qtp269504226-54] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@4d0f3094
+00:36:11.789 [qtp269504226-54] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 0 -> 1
+00:36:11.789 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/1 selected
+00:36:11.789 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.795 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.server.Server@14d4061d
+00:36:11.796 [Test worker] DEBUG org.eclipse.jetty.server.Server - Graceful shutdown org.eclipse.jetty.server.Server@14d4061d by 
+00:36:11.797 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping ServerConnector@6008a4c9{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.797 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@61816c7
+00:36:11.797 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@327f9742 keys=1 selected=0
+00:36:11.797 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@327f9742 keys=1 selected=0
+00:36:11.797 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@7a50ece
+00:36:11.797 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/1 selected
+00:36:11.797 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@7a50ece
+00:36:11.798 [qtp269504226-55] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onClose SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,CLOSED,in,out,R,-,30000,HttpConnection}{io=1,kio=1,kro=1}
+00:36:11.798 [qtp269504226-54] DEBUG o.e.jetty.io.AbstractConnection - FILL_INTERESTED-->IDLE HttpConnection@7d0abab8{IDLE}
+00:36:11.798 [qtp269504226-55] DEBUG org.eclipse.jetty.io.ChannelEndPoint - close SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,CLOSED,in,out,-,-,30000,HttpConnection}{io=1,kio=1,kro=1}
+00:36:11.798 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - close HttpParser{s=START,0 of -1}
+00:36:11.798 [qtp269504226-54] DEBUG org.eclipse.jetty.http.HttpParser - START --> CLOSED
+00:36:11.798 [qtp269504226-54] DEBUG o.e.jetty.io.AbstractConnection - HttpConnection@7d0abab8{IDLE} onFillInterestedFailed java.nio.channels.ClosedChannelException
+00:36:11.798 [qtp269504226-55] DEBUG org.eclipse.jetty.io.SelectorManager - Destroyed SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,CLOSED,ISHUT,OSHUT,-,-,30000,HttpConnection}{io=1,kio=-1,kro=-1}
+00:36:11.798 [qtp269504226-55] DEBUG o.e.jetty.io.AbstractConnection - onClose HttpConnection@7d0abab8{IDLE}
+00:36:11.798 [qtp269504226-55] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onClose SelectChannelEndPoint@3c37b083{/127.0.0.1:61114<->9998,CLOSED,ISHUT,OSHUT,-,-,30000,HttpConnection}{io=1,kio=-1,kro=-1}
+00:36:11.799 [qtp269504226-48-selector-ServerConnectorManager@61816c7/0] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp269504226-48-selector-ServerConnectorManager@61816c7/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@327f9742 keys=-1 selected=-1
+00:36:11.799 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@327f9742 keys=-1 selected=-1
+00:36:11.799 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@327f9742 keys=-1 selected=-1
+00:36:11.799 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@10422be4 keys=0 selected=0
+00:36:11.799 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@10422be4 keys=0 selected=0
+00:36:11.799 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@111950a9
+00:36:11.799 [qtp269504226-49-selector-ServerConnectorManager@61816c7/1] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.799 [qtp269504226-49-selector-ServerConnectorManager@61816c7/1] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@111950a9
+00:36:11.799 [qtp269504226-49-selector-ServerConnectorManager@61816c7/1] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp269504226-49-selector-ServerConnectorManager@61816c7/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@10422be4 keys=-1 selected=-1
+00:36:11.800 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@10422be4 keys=-1 selected=-1
+00:36:11.800 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@10422be4 keys=-1 selected=-1
+00:36:11.800 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@56aaa905 keys=0 selected=0
+00:36:11.800 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@56aaa905 keys=0 selected=0
+00:36:11.800 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@2898370d
+00:36:11.800 [qtp269504226-50-selector-ServerConnectorManager@61816c7/2] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.800 [qtp269504226-50-selector-ServerConnectorManager@61816c7/2] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@2898370d
+00:36:11.800 [qtp269504226-50-selector-ServerConnectorManager@61816c7/2] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp269504226-50-selector-ServerConnectorManager@61816c7/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@56aaa905 keys=-1 selected=-1
+00:36:11.801 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@56aaa905 keys=-1 selected=-1
+00:36:11.801 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@56aaa905 keys=-1 selected=-1
+00:36:11.801 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@635774d6 keys=0 selected=0
+00:36:11.801 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@635774d6 keys=0 selected=0
+00:36:11.801 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@7627ee6
+00:36:11.801 [qtp269504226-51-selector-ServerConnectorManager@61816c7/3] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.801 [qtp269504226-51-selector-ServerConnectorManager@61816c7/3] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@7627ee6
+00:36:11.801 [qtp269504226-51-selector-ServerConnectorManager@61816c7/3] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp269504226-51-selector-ServerConnectorManager@61816c7/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@635774d6 keys=-1 selected=-1
+00:36:11.801 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@635774d6 keys=-1 selected=-1
+00:36:11.801 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@635774d6 keys=-1 selected=-1
+00:36:11.801 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@61816c7
+00:36:11.801 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping HttpConnectionFactory@4331f88c{HTTP/1.1}
+00:36:11.802 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED HttpConnectionFactory@4331f88c{HTTP/1.1}
+00:36:11.802 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@5458a4b1
+00:36:11.802 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@5458a4b1
+00:36:11.802 [Test worker] INFO  o.e.jetty.server.ServerConnector - Stopped ServerConnector@6008a4c9{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.802 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED ServerConnector@6008a4c9{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.802 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - stopping org.eclipse.jetty.server.Server@14d4061d
+00:36:11.802 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.glassfish.jersey.jetty.JettyHttpContainer@17f45799
+00:36:11.802 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - stopping org.glassfish.jersey.jetty.JettyHttpContainer@17f45799
+00:36:11.803 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.glassfish.jersey.jetty.JettyHttpContainer@17f45799
+00:36:11.804 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping qtp269504226{STARTED,8<=8<=200,i=8,q=0}
+00:36:11.806 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED qtp269504226{STOPPED,8<=0<=200,i=0,q=0}
+00:36:11.806 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.server.Server@14d4061d
+00:36:11.864 [Test worker] DEBUG o.h.v.i.e.r.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+00:36:11.865 [Test worker] DEBUG o.h.v.i.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+00:36:11.866 [Test worker] DEBUG o.h.v.i.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+00:36:11.873 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@1514739 added {qtp1108296430{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+00:36:11.873 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - HttpConnectionFactory@4b7f58fd{HTTP/1.1} added {HttpConfiguration@21440349{32768,8192/8192,https://:0,[]},POJO}
+00:36:11.874 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1287c927{null}{0.0.0.0:0} added {org.eclipse.jetty.server.Server@1514739,UNMANAGED}
+00:36:11.874 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1287c927{null}{0.0.0.0:0} added {qtp1108296430{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+00:36:11.874 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1287c927{null}{0.0.0.0:0} added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@19642dbd,AUTO}
+00:36:11.874 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1287c927{null}{0.0.0.0:0} added {org.eclipse.jetty.io.ArrayByteBufferPool@230ed33a,POJO}
+00:36:11.874 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1287c927{null}{0.0.0.0:0} added {HttpConnectionFactory@4b7f58fd{HTTP/1.1},AUTO}
+00:36:11.874 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1287c927{HTTP/1.1}{0.0.0.0:0} added {org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@2251d259,MANAGED}
+00:36:11.874 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@1514739 added {ServerConnector@1287c927{HTTP/1.1}{0.0.0.0:9998},AUTO}
+00:36:11.874 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - org.eclipse.jetty.server.Server@1514739 added {org.glassfish.jersey.jetty.JettyHttpContainer@1a600a6b,AUTO}
+00:36:11.874 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.server.Server@1514739
+00:36:11.874 [Test worker] INFO  org.eclipse.jetty.server.Server - jetty-9.1.1.v20140108
+00:36:11.874 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - starting org.eclipse.jetty.server.Server@1514739
+00:36:11.874 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting qtp1108296430{STOPPED,8<=0<=200,i=0,q=0}
+00:36:11.876 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED qtp1108296430{STARTED,8<=8<=200,i=7,q=0}
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.glassfish.jersey.jetty.JettyHttpContainer@1a600a6b
+00:36:11.877 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - starting org.glassfish.jersey.jetty.JettyHttpContainer@1a600a6b
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.glassfish.jersey.jetty.JettyHttpContainer@1a600a6b
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting ServerConnector@1287c927{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.ContainerLifeCycle - ServerConnector@1287c927{HTTP/1.1}{0.0.0.0:9998} added {sun.nio.ch.ServerSocketChannelImpl[/0:0:0:0:0:0:0:0:9998],POJO}
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@19642dbd
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@19642dbd
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting HttpConnectionFactory@4b7f58fd{HTTP/1.1}
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED HttpConnectionFactory@4b7f58fd{HTTP/1.1}
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@2251d259
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@360226f1 keys=-1 selected=-1
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@360226f1 keys=0 selected=0
+00:36:11.877 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@6340b408 keys=-1 selected=-1
+00:36:11.878 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@6340b408 keys=0 selected=0
+00:36:11.878 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1108296430-59-selector-ServerConnectorManager@2251d259/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@360226f1 keys=0 selected=0
+00:36:11.878 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.878 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@4faf7123 keys=-1 selected=-1
+00:36:11.878 [qtp1108296430-60-selector-ServerConnectorManager@2251d259/1] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1108296430-60-selector-ServerConnectorManager@2251d259/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@6340b408 keys=0 selected=0
+00:36:11.878 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@4faf7123 keys=0 selected=0
+00:36:11.878 [qtp1108296430-60-selector-ServerConnectorManager@2251d259/1] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.878 [qtp1108296430-61-selector-ServerConnectorManager@2251d259/2] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1108296430-61-selector-ServerConnectorManager@2251d259/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@4faf7123 keys=0 selected=0
+00:36:11.878 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - starting org.eclipse.jetty.io.SelectorManager$ManagedSelector@550609ef keys=-1 selected=-1
+00:36:11.879 [qtp1108296430-61-selector-ServerConnectorManager@2251d259/2] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.879 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.io.SelectorManager$ManagedSelector@550609ef keys=0 selected=0
+00:36:11.879 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@2251d259
+00:36:11.879 [qtp1108296430-62-selector-ServerConnectorManager@2251d259/3] DEBUG org.eclipse.jetty.io.SelectorManager - Starting Thread[qtp1108296430-62-selector-ServerConnectorManager@2251d259/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@550609ef keys=0 selected=0
+00:36:11.879 [qtp1108296430-62-selector-ServerConnectorManager@2251d259/3] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.879 [Test worker] INFO  o.e.jetty.server.ServerConnector - Started ServerConnector@1287c927{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.879 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED ServerConnector@1287c927{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.879 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STARTED org.eclipse.jetty.server.Server@1514739
+00:36:11.900 [qtp1108296430-63-acceptor-0-ServerConnector@1287c927{HTTP/1.1}{0.0.0.0:9998}] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@5ab68e0f
+00:36:11.900 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.901 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Accept@5ab68e0f
+00:36:11.901 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onOpen SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,Open,in,out,-,-,30000,null}{io=0,kio=0,kro=0}
+00:36:11.902 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.IdleTimeout - SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,Open,in,out,-,-,30000,null}{io=0,kio=0,kro=0} idle timeout check, elapsed: 1 ms, remaining: 29999 ms
+00:36:11.902 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG o.e.jetty.server.HttpConnection - New HTTP Connection HttpConnection@5b2533f2{IDLE}
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG o.e.jetty.io.AbstractConnection - onOpen HttpConnection@5b2533f2{IDLE}
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG o.e.jetty.io.AbstractConnection - fillInterested HttpConnection@5b2533f2{IDLE}
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG o.e.jetty.io.AbstractConnection - IDLE-->FILL_INTERESTED HttpConnection@5b2533f2{FILL_INTERESTED}
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 0 -> 1 for SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=0,kro=0}
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@31390b61
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 0 -> 1
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Created SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=1,kro=0}
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 1/1 selected
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 1 -> 0
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 1 -> 0 for SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,Open,in,out,R,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@31390b61
+00:36:11.903 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG o.e.jetty.io.AbstractConnection - FILL_INTERESTED-->FILLING HttpConnection@5b2533f2{FILLING}
+00:36:11.904 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.904 [qtp1108296430-65] DEBUG o.e.jetty.server.HttpConnection - HttpConnection@5b2533f2{FILLING} onFillable HttpChannelState@69944070{s=IDLE i=true a=null}
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 195 SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - parseNext s=START HeapByteBuffer@6753b332[p=0,l=195,c=8192,r=195]={<<<GET /Test HTTP/1.... keep-alive||||>>>�����������������...���������������}
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - START --> SPACE1
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - SPACE1 --> URI
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - URI --> SPACE2
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - SPACE2 --> REQUEST_VERSION
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - REQUEST_VERSION --> HEADER
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_NAME
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_NAME --> HEADER_VALUE
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_VALUE
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_VALUE --> HEADER_IN_VALUE
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> HEADER_IN_VALUE
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER_IN_VALUE --> HEADER
+00:36:11.904 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - HEADER --> END
+00:36:11.905 [qtp1108296430-65] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@636c2b00{r=1,a=IDLE,uri=-} messageComplete
+00:36:11.905 [qtp1108296430-65] DEBUG org.eclipse.jetty.server.HttpInput - HttpInputOverHTTP@266eb909 EOF
+00:36:11.905 [qtp1108296430-65] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@636c2b00{r=1,a=IDLE,uri=-} handle enter
+00:36:11.905 [qtp1108296430-65 - /Test] DEBUG o.e.jetty.server.HttpChannelState - HttpChannelState@69944070{s=IDLE i=true a=null} handling IDLE
+00:36:11.905 [qtp1108296430-65 - /Test] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@636c2b00{r=1,a=DISPATCHED,uri=/Test} action REQUEST_DISPATCH
+00:36:11.905 [qtp1108296430-65 - /Test] DEBUG org.eclipse.jetty.server.Server - REQUEST /Test on HttpChannelOverHttp@636c2b00{r=1,a=DISPATCHED,uri=/Test}
+00:36:11.909 [qtp1108296430-65 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@17821ec3[ITERATING] generate: NEED_HEADER (null,[p=0,l=0,c=0,r=0],true)@START
+00:36:11.909 [qtp1108296430-65 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@17821ec3[ITERATING] generate: FLUSH ([p=0,l=79,c=8192,r=79],[p=0,l=0,c=0,r=0],true)@COMPLETING
+00:36:11.909 [qtp1108296430-65 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - write: WriteFlusher@46414646{IDLE} [HeapByteBuffer@15340318[p=0,l=79,c=8192,r=79]={<<<HTTP/1.1 400 Bad ....v20140108)||||>>>�����������������...���������������}]
+00:36:11.909 [qtp1108296430-65 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@46414646{WRITING}:IDLE-->WRITING
+00:36:11.909 [qtp1108296430-65 - /Test] DEBUG org.eclipse.jetty.io.ChannelEndPoint - flushed 79 SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,Open,in,out,-,W,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.909 [qtp1108296430-65 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - flushed true
+00:36:11.909 [qtp1108296430-65 - /Test] DEBUG org.eclipse.jetty.io.WriteFlusher - update WriteFlusher@46414646{IDLE}:WRITING-->IDLE
+00:36:11.909 [qtp1108296430-65 - /Test] DEBUG o.e.jetty.server.HttpConnection - org.eclipse.jetty.server.HttpConnection$CommitCallback@17821ec3[ITERATING] generate: DONE ([p=79,l=79,c=8192,r=0],[p=0,l=0,c=0,r=0],true)@END
+00:36:11.909 [qtp1108296430-65 - /Test] DEBUG org.eclipse.jetty.server.Server - RESPONSE /Test  400 handled=true
+00:36:11.909 [qtp1108296430-65 - /Test] DEBUG o.e.jetty.server.HttpChannelState - HttpChannelState@69944070{s=DISPATCHED i=true a=null} unhandle DISPATCHED
+00:36:11.909 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - reset HttpParser{s=END,0 of 0}
+00:36:11.909 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - END --> START
+00:36:11.909 [qtp1108296430-65] DEBUG org.eclipse.jetty.server.HttpChannel - HttpChannelOverHttp@636c2b00{r=1,a=IDLE,uri=-} handle exit, result COMPLETE
+00:36:11.910 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.server.Server@1514739
+00:36:11.910 [qtp1108296430-65] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 0 SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.910 [qtp1108296430-65] DEBUG org.eclipse.jetty.io.ChannelEndPoint - filled 0 SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,Open,in,out,-,-,30000,HttpConnection}{io=0,kio=0,kro=1}
+00:36:11.910 [qtp1108296430-65] DEBUG org.eclipse.jetty.http.HttpParser - parseNext s=START HeapByteBuffer@15340318[p=0,l=0,c=8192,r=0]={<<<>>>HTTP/1.1 400 Bad ...���������������}
+00:36:11.910 [qtp1108296430-65] DEBUG o.e.jetty.io.AbstractConnection - fillInterested HttpConnection@5b2533f2{FILLING}
+00:36:11.910 [qtp1108296430-65] DEBUG o.e.jetty.io.AbstractConnection - FILLING-->FILLING_FILL_INTERESTED HttpConnection@5b2533f2{FILLING_FILL_INTERESTED}
+00:36:11.910 [qtp1108296430-65] DEBUG o.e.jetty.io.AbstractConnection - FILLING_FILL_INTERESTED-->FILL_INTERESTED HttpConnection@5b2533f2{FILL_INTERESTED}
+00:36:11.910 [qtp1108296430-65] DEBUG o.e.jetty.io.SelectChannelEndPoint - Local interests updated 0 -> 1 for SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,Open,in,out,R,-,30000,HttpConnection}{io=1,kio=0,kro=1}
+00:36:11.910 [qtp1108296430-65] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectChannelEndPoint$1@31390b61
+00:36:11.910 [qtp1108296430-65] DEBUG o.e.jetty.io.SelectChannelEndPoint - Key interests updated 0 -> 1
+00:36:11.910 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/1 selected
+00:36:11.910 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop waiting on select
+00:36:11.910 [Test worker] DEBUG org.eclipse.jetty.server.Server - Graceful shutdown org.eclipse.jetty.server.Server@1514739 by 
+00:36:11.910 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping ServerConnector@1287c927{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.910 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@2251d259
+00:36:11.910 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@360226f1 keys=1 selected=0
+00:36:11.910 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@360226f1 keys=1 selected=0
+00:36:11.911 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@11fff702
+00:36:11.911 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/1 selected
+00:36:11.911 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@11fff702
+00:36:11.911 [qtp1108296430-66] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onClose SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,CLOSED,in,out,R,-,30000,HttpConnection}{io=1,kio=1,kro=1}
+00:36:11.911 [qtp1108296430-64] DEBUG o.e.jetty.io.AbstractConnection - FILL_INTERESTED-->IDLE HttpConnection@5b2533f2{IDLE}
+00:36:11.911 [qtp1108296430-66] DEBUG org.eclipse.jetty.io.ChannelEndPoint - close SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,CLOSED,in,out,-,-,30000,HttpConnection}{io=1,kio=1,kro=1}
+00:36:11.911 [qtp1108296430-64] DEBUG org.eclipse.jetty.http.HttpParser - close HttpParser{s=START,0 of -1}
+00:36:11.911 [qtp1108296430-64] DEBUG org.eclipse.jetty.http.HttpParser - START --> CLOSED
+00:36:11.911 [qtp1108296430-64] DEBUG o.e.jetty.io.AbstractConnection - HttpConnection@5b2533f2{IDLE} onFillInterestedFailed java.nio.channels.ClosedChannelException
+00:36:11.911 [qtp1108296430-66] DEBUG org.eclipse.jetty.io.SelectorManager - Destroyed SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,CLOSED,ISHUT,OSHUT,-,-,30000,HttpConnection}{io=1,kio=-1,kro=-1}
+00:36:11.911 [qtp1108296430-66] DEBUG o.e.jetty.io.AbstractConnection - onClose HttpConnection@5b2533f2{IDLE}
+00:36:11.911 [qtp1108296430-66] DEBUG o.eclipse.jetty.io.AbstractEndPoint - onClose SelectChannelEndPoint@1a1839c9{/127.0.0.1:61115<->9998,CLOSED,ISHUT,OSHUT,-,-,30000,HttpConnection}{io=1,kio=-1,kro=-1}
+00:36:11.911 [qtp1108296430-59-selector-ServerConnectorManager@2251d259/0] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1108296430-59-selector-ServerConnectorManager@2251d259/0,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@360226f1 keys=-1 selected=-1
+00:36:11.912 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@360226f1 keys=-1 selected=-1
+00:36:11.912 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@360226f1 keys=-1 selected=-1
+00:36:11.912 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@6340b408 keys=0 selected=0
+00:36:11.912 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@6340b408 keys=0 selected=0
+00:36:11.912 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@50db9f0f
+00:36:11.912 [qtp1108296430-60-selector-ServerConnectorManager@2251d259/1] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.912 [qtp1108296430-60-selector-ServerConnectorManager@2251d259/1] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@50db9f0f
+00:36:11.912 [qtp1108296430-60-selector-ServerConnectorManager@2251d259/1] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1108296430-60-selector-ServerConnectorManager@2251d259/1,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@6340b408 keys=-1 selected=-1
+00:36:11.912 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@6340b408 keys=-1 selected=-1
+00:36:11.912 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@6340b408 keys=-1 selected=-1
+00:36:11.912 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@4faf7123 keys=0 selected=0
+00:36:11.912 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@4faf7123 keys=0 selected=0
+00:36:11.912 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@3e25d6cf
+00:36:11.913 [qtp1108296430-61-selector-ServerConnectorManager@2251d259/2] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.913 [qtp1108296430-61-selector-ServerConnectorManager@2251d259/2] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@3e25d6cf
+00:36:11.913 [qtp1108296430-61-selector-ServerConnectorManager@2251d259/2] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1108296430-61-selector-ServerConnectorManager@2251d259/2,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@4faf7123 keys=-1 selected=-1
+00:36:11.913 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@4faf7123 keys=-1 selected=-1
+00:36:11.913 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@4faf7123 keys=-1 selected=-1
+00:36:11.913 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@550609ef keys=0 selected=0
+00:36:11.913 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopping org.eclipse.jetty.io.SelectorManager$ManagedSelector@550609ef keys=0 selected=0
+00:36:11.913 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Queued change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@93cf01
+00:36:11.913 [qtp1108296430-62-selector-ServerConnectorManager@2251d259/3] DEBUG org.eclipse.jetty.io.SelectorManager - Selector loop woken up from select, 0/0 selected
+00:36:11.913 [qtp1108296430-62-selector-ServerConnectorManager@2251d259/3] DEBUG org.eclipse.jetty.io.SelectorManager - Running change org.eclipse.jetty.io.SelectorManager$ManagedSelector$Stop@93cf01
+00:36:11.913 [qtp1108296430-62-selector-ServerConnectorManager@2251d259/3] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped Thread[qtp1108296430-62-selector-ServerConnectorManager@2251d259/3,5,main] on org.eclipse.jetty.io.SelectorManager$ManagedSelector@550609ef keys=-1 selected=-1
+00:36:11.914 [Test worker] DEBUG org.eclipse.jetty.io.SelectorManager - Stopped org.eclipse.jetty.io.SelectorManager$ManagedSelector@550609ef keys=-1 selected=-1
+00:36:11.914 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.io.SelectorManager$ManagedSelector@550609ef keys=-1 selected=-1
+00:36:11.914 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@2251d259
+00:36:11.914 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping HttpConnectionFactory@4b7f58fd{HTTP/1.1}
+00:36:11.914 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED HttpConnectionFactory@4b7f58fd{HTTP/1.1}
+00:36:11.914 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@19642dbd
+00:36:11.914 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@19642dbd
+00:36:11.914 [Test worker] INFO  o.e.jetty.server.ServerConnector - Stopped ServerConnector@1287c927{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.914 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED ServerConnector@1287c927{HTTP/1.1}{0.0.0.0:9998}
+00:36:11.914 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - stopping org.eclipse.jetty.server.Server@1514739
+00:36:11.914 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping org.glassfish.jersey.jetty.JettyHttpContainer@1a600a6b
+00:36:11.914 [Test worker] DEBUG o.e.j.server.handler.AbstractHandler - stopping org.glassfish.jersey.jetty.JettyHttpContainer@1a600a6b
+00:36:11.915 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.glassfish.jersey.jetty.JettyHttpContainer@1a600a6b
+00:36:11.916 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - stopping qtp1108296430{STARTED,8<=8<=200,i=8,q=0}
+00:36:11.916 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED qtp1108296430{STOPPED,8<=0<=200,i=0,q=0}
+00:36:11.916 [Test worker] DEBUG o.e.j.u.component.AbstractLifeCycle - STOPPED org.eclipse.jetty.server.Server@1514739
+]]></system-out>
+  <system-err><![CDATA[Jan 24, 2016 12:36:10 AM org.glassfish.jersey.test.jetty.JettyTestContainerFactory$JettyTestContainer <init>
+INFO: Creating JettyTestContainer configured at the base URI http://localhost:9998/
+Jan 24, 2016 12:36:11 AM org.glassfish.jersey.test.jetty.JettyTestContainerFactory$JettyTestContainer <init>
+INFO: Creating JettyTestContainer configured at the base URI http://localhost:9998/
+Jan 24, 2016 12:36:11 AM org.glassfish.jersey.test.jetty.JettyTestContainerFactory$JettyTestContainer <init>
+INFO: Creating JettyTestContainer configured at the base URI http://localhost:9998/
+Jan 24, 2016 12:36:11 AM org.glassfish.jersey.test.jetty.JettyTestContainerFactory$JettyTestContainer <init>
+INFO: Creating JettyTestContainer configured at the base URI http://localhost:9998/
+Jan 24, 2016 12:36:11 AM org.glassfish.jersey.test.jetty.JettyTestContainerFactory$JettyTestContainer <init>
+INFO: Creating JettyTestContainer configured at the base URI http://localhost:9998/
+]]></system-err>
+</testsuite>
